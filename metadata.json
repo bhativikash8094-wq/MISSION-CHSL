@@ -1,0 +1,6 @@
+{
+  "name": "SSC CHSL 2026 Study Plan",
+  "description": "45-Day Syllabus, Daily Practice Index, and Timetable with Mobile Number OTP & Google login, cloud progress sync, and printable PDF export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

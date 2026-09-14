@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information supporting Google and Mobile phone auth",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "format": "email", "maxLength": 256 },
+        "phoneNumber": { "type": "string", "maxLength": 32 },
+        "displayName": { "type": "string", "maxLength": 128 },
+        "photoURL": { "type": "string", "maxLength": 1024 },
+        "authProvider": { "type": "string", "maxLength": 32 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "createdAt", "updatedAt"]
+    },
+    "DayProgress": {
+      "title": "DayProgress",
+      "description": "Daily study progress and question logs for a specific day in the 45-day syllabus",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "day": { "type": "number" },
+        "completed": { "type": "boolean" },
+        "arithmeticDone": { "type": "boolean" },
+        "advancedDone": { "type": "boolean" },
+        "reasoningDone": { "type": "boolean" },
+        "englishDone": { "type": "boolean" },
+        "gkDone": { "type": "boolean" },
+        "arithmeticQs": { "type": "number" },
+        "advancedQs": { "type": "number" },
+        "reasoningQs": { "type": "number" },
+        "englishQs": { "type": "number" },
+        "gkGsQs": { "type": "number" },
+        "notes": { "type": "string", "maxLength": 2000 },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "day", "completed", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "User profile document containing authentication metadata"
+    },
+    "/users/{userId}/studyProgress/{dayId}": {
+      "schema": { "$ref": "#/entities/DayProgress" },
+      "description": "Daily syllabus progress record for a user"
+    }
+  }
+}
